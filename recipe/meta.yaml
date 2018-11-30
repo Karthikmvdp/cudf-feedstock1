@@ -1,0 +1,55 @@
+package:
+  name: cudf
+  version: 0.2.0 
+
+source:
+  - git_rev: v0.2.0
+    git_url: https://github.com/rapidsai/cudf.git 
+    folder: cudf 
+    patches: 
+      - libgdf_test_skip.patch
+  - git_rev: apache-arrow-0.11.0 
+    git_url: https://github.com/apache/arrow.git 
+    folder: repos/arrow 
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - python
+    - setuptools
+    - setuptools_scm
+    - numba 
+    - numpy 1.14.5
+    - pandas 0.20.3
+    - git
+    - cmake
+    - make
+    - cython
+    - boost 
+    - py 
+    - cffi
+    - gfortran_impl_linux-ppc64le 
+    - flex
+    - bison
+    - pkg-config
+  run:
+    - python
+    - setuptools
+    - pandas 0.20.*
+    - numba>=0.40.0dev
+    - cffi
+
+test:
+  requires:
+    - distributed >=1.22.1
+    - pytest
+  imports:
+    - cudf
+
+about:
+  home: http://gpuopenanalytics.com/
+  license: Apache
+  # license_file: LICENSE
+  summary: GPU Dataframe core library
